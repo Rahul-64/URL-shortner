@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            font-size: xx-large;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        table, th, td {
+          border:1px solid black;
+          
+        }
+        </style>
+</head>
+<body>
+    <h1>URL shawrty</h1>
+
+    <% if (locals.shortid) { %>
+        <p> New URL is <a href="http://localhost:8001/URL/<%= shortid %>" target="_blank"> Your short ID</a></p>
+    <% } %>
+
+    <!-- creating form  -->
+    <form method="POST" action="/URL">
+        <label>Enter your link:</label>
+        <input type="text" name="url" placeholder="https://example.com" required>
+        <button type="submit">Enter</button>
+    </form>
+
+    <div>
+        <% if (locals.urls) { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>S.no</th>
+                        <th>Original URL</th>
+                        <th>Short URL</th>
+                        <th>Clicks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% urls.forEach((url, index) => { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= url.URL %></td>
+                            <td><a href="http://localhost:8001/URL/<%= url.shortURL %>" target="_blank">Your shwarty link</a></td>
+                            <td><%= url.visitHistory.length %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } %>
+    </div>
+    
+    
+</body>
+</html>
