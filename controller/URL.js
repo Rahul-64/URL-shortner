@@ -1,5 +1,6 @@
 const { short } = require('webidl-conversions');
 const DB = require('../model/URL');
+const user = require('../model/user')
 const { nanoid } = require('nanoid');
 const { link } = require('fs');
 
@@ -26,6 +27,8 @@ async function URLshortner(req , res){
     else{
         shortid = existingEntry.shortURL 
     }
+
+    console.log(req.person)
    
 
     return res.render('home',{shortid : shortid });
@@ -61,11 +64,12 @@ async function URLanalytics(req , res){
     })
 }
 
-async function staticrouteshandlers(req , res) {
+async function searchhandler(req , res) {
     const allurls = await DB.find({});
     return res.render('home' , {urls : allurls} );
 }
 
 
 
-module.exports = {URLshortner ,URLredirect , URLanalytics , staticrouteshandlers}
+
+module.exports = {URLshortner ,URLredirect , URLanalytics , searchhandler }

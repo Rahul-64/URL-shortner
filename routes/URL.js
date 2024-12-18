@@ -5,10 +5,10 @@ const express = require('express')
 const router = express.Router();
 
 
-router.post('/URL' , URLshortner)
+router.post('/' , URLshortner)
 
-router.get('/URL/:shortid' , URLredirect)
+router.get('/:shortid' , URLredirect)
 
-router.get('/URL/analytics/:shortid' , URLanalytics)
+router.get('/analytics/:shortid' , URLanalytics)
 
 module.exports = router
