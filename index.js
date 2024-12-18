@@ -7,6 +7,7 @@ const DB = require('./model/URL');
 const {connections} = require('./connection');
 
 const URLroutes = require("./routes/URL");
+const staticroutes = require('./routes/staticRoutes');
 
 const { json, urlencoded } = require('body-parser');
 
@@ -27,10 +28,7 @@ connections( 'mongodb://127.0.0.1:27017/url-shortner');
 
 app.use('/' , URLroutes);
 
-app.get('/search' , async (req , res)=>{
-    const allurls = await DB.find({});
-    return res.render('home' , {urls : allurls} );
-})
+app.use('/search' ,staticroutes)
 
 
 

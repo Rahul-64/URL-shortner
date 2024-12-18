@@ -3,7 +3,7 @@ const { type } = require('os');
 const { stringify } = require('querystring');
 
 
-const URLschema = {
+const URLschema = new mongoose.Schema({
     URL : {
         type : String,
         require : true
@@ -13,7 +13,7 @@ const URLschema = {
         require : true
     },
     visitHistory : [{clicksperURL : {type : Number}}]
-}
+})
 
 const DB = mongoose.model('URLshortner' , URLschema);
 

@@ -43,6 +43,7 @@ async function URLredirect(req , res){
         }
     });
 
+    
     let redirectURL = instance.URL;
     let clicksPerUrl = instance.visitHistory.length
     
@@ -60,6 +61,11 @@ async function URLanalytics(req , res){
     })
 }
 
+async function staticrouteshandlers(req , res) {
+    const allurls = await DB.find({});
+    return res.render('home' , {urls : allurls} );
+}
 
 
-module.exports = {URLshortner ,URLredirect , URLanalytics}
+
+module.exports = {URLshortner ,URLredirect , URLanalytics , staticrouteshandlers}
